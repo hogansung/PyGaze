@@ -38,7 +38,7 @@ import math
 import random
 
 # external imports
-from opengaze import OpenGazeTracker as OpenGaze
+from .opengaze import OpenGazeTracker as OpenGaze
 
 
 def deg2pix(cmdist, angle, pixpercm):
@@ -575,7 +575,7 @@ class OpenGazeTracker(BaseEyeTracker):
 			return self.fix_triggered_drift_correction(pos)
 		
 		# DEBUG #
-		print("Running drift correction, pos=(%d, %d)" % (pos[0], pos[1]))
+		print(("Running drift correction, pos=(%d, %d)" % (pos[0], pos[1])))
 		# # # # #
 
 		self.draw_drift_correction_target(pos[0], pos[1])

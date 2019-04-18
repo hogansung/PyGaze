@@ -316,7 +316,7 @@ class BaseEyeTracker:
 				desc:	A variable value
 		"""
 
-		self.log(u"var %s %s" % (safe_decode(var), safe_decode(val)))
+		self.log("var %s %s" % (safe_decode(var), safe_decode(val)))
 
 	def pupil_size(self):
 

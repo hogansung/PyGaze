@@ -465,7 +465,7 @@ class EyelinkGraphics(custom_display):
 		msg		--	The message to be played.
 		"""
 
-		print "eyelink_graphics.alert_printf(): %s" % msg
+		print("eyelink_graphics.alert_printf(): %s" % msg)
 
 	def setup_image_display(self, width, height):
 

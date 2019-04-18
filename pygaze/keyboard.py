@@ -33,17 +33,17 @@ class Keyboard(BaseKeyboard):
 
 		# see BaseKeyboard
 
-		if disptype == u'pygame':
+		if disptype == 'pygame':
 			from pygaze._keyboard.pygamekeyboard import PyGameKeyboard as \
 				Keyboard
-		elif disptype == u'psychopy':
+		elif disptype == 'psychopy':
 			from pygaze._keyboard.psychopykeyboard import PsychoPyKeyboard as \
 				Keyboard
-		elif disptype == u'opensesame':
+		elif disptype == 'opensesame':
 			from pygaze._keyboard.oskeyboard import OSKeyboard as \
 				Keyboard
 		else:
-			raise Exception(u'Unexpected disptype : %s' % disptype)
+			raise Exception('Unexpected disptype : %s' % disptype)
 		self.__class__ = Keyboard
 		self.__class__.__init__(self, **args)
 		copy_docstr(BaseKeyboard, Keyboard)

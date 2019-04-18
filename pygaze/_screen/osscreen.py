@@ -53,7 +53,7 @@ class OSScreen(BaseScreen):
 
 		self.experiment = settings.osexperiment
 		self.uniform_coordinates = \
-			self.experiment.var.uniform_coordinates == u'yes'
+			self.experiment.var.uniform_coordinates == 'yes'
 		self.create(screen=screen)
 
 	def _pos(self, pos):
@@ -96,7 +96,7 @@ class OSScreen(BaseScreen):
 		x, y = self._pos(pos)
 		kwdict = {}
 		if colour is not None:
-			kwdict[u'color'] = colour
+			kwdict['color'] = colour
 		self.canvas.set_penwidth(pw)
 		self.canvas.circle(x, y, r, fill=fill, **kwdict)
 
@@ -108,9 +108,9 @@ class OSScreen(BaseScreen):
 		x, y = self._pos((x, y))
 		kwdict = {}
 		if colour is not None:
-			kwdict[u'color'] = colour
+			kwdict['color'] = colour
 		if pw is not None:
-			kwdict[u'penwidth'] = pw
+			kwdict['penwidth'] = pw
 		self.canvas.ellipse(x, y, w, h, fill=fill, **kwdict)
 
 	def draw_rect(self, colour=None, x=None, y=None, w=50, h=50, pw=1,
@@ -121,9 +121,9 @@ class OSScreen(BaseScreen):
 		x, y = self._pos((x, y))
 		kwdict = {}
 		if colour is not None:
-			kwdict[u'color'] = colour
+			kwdict['color'] = colour
 		if pw is not None:
-			kwdict[u'penwidth'] = pw
+			kwdict['penwidth'] = pw
 		self.canvas.rect(x, y, w, h, fill=fill, **kwdict)
 
 	def draw_line(self, colour=None, spos=None, epos=None, pw=1):
@@ -134,9 +134,9 @@ class OSScreen(BaseScreen):
 		ex, ey = self._pos(epos)
 		kwdict = {}
 		if colour is not None:
-			kwdict[u'color'] = colour
+			kwdict['color'] = colour
 		if pw is not None:
-			kwdict[u'penwidth'] = pw
+			kwdict['penwidth'] = pw
 		self.canvas.line(sx, sy, ex, ey, **kwdict)
 
 	def draw_polygon(self, pointlist, colour=None, pw=1, fill=True):
@@ -145,9 +145,9 @@ class OSScreen(BaseScreen):
 
 		kwdict = {}
 		if colour is not None:
-			kwdict[u'color'] = colour
+			kwdict['color'] = colour
 		if pw is not None:
-			kwdict[u'penwidth'] = pw
+			kwdict['penwidth'] = pw
 		pointlist = [self._pos(pt) for pt in pointlist]
 		self.canvas.polygon(pointlist, fill=fill, **kwdict)
 
@@ -161,7 +161,7 @@ class OSScreen(BaseScreen):
 		x, y = self._pos(pos)
 		kwdict = {}
 		if colour is not None:
-			kwdict[u'color'] = colour
+			kwdict['color'] = colour
 		self.canvas.fixdot(x, y, **kwdict)
 
 	def draw_text(self, text='text', colour=None, pos=None, center=True,
@@ -172,7 +172,7 @@ class OSScreen(BaseScreen):
 		x, y = self._pos(pos)
 		kwdict = {}
 		if colour is not None:
-			kwdict[u'color'] = colour
+			kwdict['color'] = colour
 		self.canvas.set_font(style=font, size=fontsize)
 		self.canvas.text(text, center=center, x=x, y=y, html=False, **kwdict)
 

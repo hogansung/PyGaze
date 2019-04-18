@@ -61,7 +61,7 @@ class Logfile(BaseLogfile):
 		line = ""
 
 		# all values to string
-		vallist = map(str, vallist)
+		vallist = list(map(str, vallist))
 		
 		# insert tabs between values, end with newline character
 		line = "\t".join(vallist) + "\n"

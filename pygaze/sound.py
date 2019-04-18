@@ -37,10 +37,10 @@ class Sound(BaseSound):
 		TODO: docstring.
 		"""
 
-		if disptype in (u'pygame', u'psychopy', u'opensesame'):
+		if disptype in ('pygame', 'psychopy', 'opensesame'):
 			from pygaze._sound.pygamesound import PyGameSound as Sound
 		else:
-			raise Exception(u'Unexpected disptype : %s' % disptype)
+			raise Exception('Unexpected disptype : %s' % disptype)
 		self.__class__ = Sound
 		self.__class__.__init__(self, **args)
 		copy_docstr(BaseSound, Sound)

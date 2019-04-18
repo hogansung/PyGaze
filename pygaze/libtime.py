@@ -21,14 +21,14 @@
 
 from pygaze.py3compat import *
 from pygaze import settings
-if settings.DISPTYPE == u'psychopy':
+if settings.DISPTYPE == 'psychopy':
 	from pygaze._time.psychopytime import PsychoPyTime as Time
-elif settings.DISPTYPE == u'pygame':
+elif settings.DISPTYPE == 'pygame':
 	from pygaze._time.pygametime import PyGameTime as Time
-elif settings.DISPTYPE == u'opensesame':
+elif settings.DISPTYPE == 'opensesame':
 	from pygaze._time.ostime import OSTime as Time
 else:
-	raise Exception(u'Unexpected disptype : %s' % disptype)
+	raise Exception('Unexpected disptype : %s' % disptype)
 
 # # # # #
 # functions

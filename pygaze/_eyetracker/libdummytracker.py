@@ -197,7 +197,7 @@ class Dummy(DumbDummy):
 
 		self.recording = True
 		
-		print("Recording would have started at: " + str(dumrectime))
+		print(("Recording would have started at: " + str(dumrectime)))
 
 
 	def stop_recording(self):
@@ -209,7 +209,7 @@ class Dummy(DumbDummy):
 
 		self.recording = False
 
-		print("Recording would have stopped at: " + str(dumrectime))
+		print(("Recording would have stopped at: " + str(dumrectime)))
 
 
 	def close(self):
@@ -221,7 +221,7 @@ class Dummy(DumbDummy):
 		
 		closetime = clock.get_time()
 
-		print("eyetracker connection would have closed at: " + str(closetime))
+		print(("eyetracker connection would have closed at: " + str(closetime)))
 
 	def pupil_size(self):
 		

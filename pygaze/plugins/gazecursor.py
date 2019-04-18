@@ -60,7 +60,7 @@ class GazeCursor:
 			self.size = (int(size), int(size))
 		elif type(size) == tuple or type(size) == list:
 			if len(size) == 2:
-				self.size = map(int, size)
+				self.size = list(map(int, size))
 			else:
 				self.size = (int(size[0]), int(size[1]))
 				print("WARNING! plugins.gazecursor.__init__: too many entries for cursor size; only the first two are used")

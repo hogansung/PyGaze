@@ -11,7 +11,7 @@ IMGDIR = os.path.join(DIR, 'imgs')
 # the INSTFILE is the path to the file that contains the instructions
 INSTFILE = os.path.join(DIR, 'instructions.txt')
 # ask for the participant name, to use as the name for the logfile...
-LOGFILENAME = input("Participant name: ")
+LOGFILENAME = eval(input("Participant name: "))
 # ...then use the LOGFILENAME to make create the path to the logfile
 LOGFILE = os.path.join(DATADIR, LOGFILENAME)
 

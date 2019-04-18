@@ -21,13 +21,13 @@ import sys
 
 if sys.version_info >= (3,0,0):
 	py3 = True
-	basestring = str
-	universal_newline_mode = u'r'
+	str = str
+	universal_newline_mode = 'r'
 else:
 	bytes = str
-	str = unicode
+	str = str
 	py3 = False
-	universal_newline_mode = u'rU'
+	universal_newline_mode = 'rU'
 
 def safe_decode(s, enc='utf-8', errors='strict'):
 	if isinstance(s, str):

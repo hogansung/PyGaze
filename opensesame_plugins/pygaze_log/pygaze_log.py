@@ -25,7 +25,7 @@ class pygaze_log(item):
 	
 	"""Plug-in runtime definition."""
 
-	description = u'Writes information to the eye-tracker logfile'
+	description = 'Writes information to the eye-tracker logfile'
 
 	def reset(self):
 
@@ -34,8 +34,8 @@ class pygaze_log(item):
 			Resets plug-in settings.
 		"""
 		
-		self.var.msg = u''
-		self.var.auto_log = u'no'
+		self.var.msg = ''
+		self.var.auto_log = 'no'
 		self.var.throttle = 2
 	
 	def run(self):
@@ -43,13 +43,13 @@ class pygaze_log(item):
 		"""The run phase of the plug-in goes here."""
 
 		self.set_item_onset()
-		for msg in self.var.msg.split(u'\n'):
+		for msg in self.var.msg.split('\n'):
 			self.experiment.pygaze_eyetracker.log(self.syntax.eval_text(msg))
 			self.clock.sleep(self.var.throttle)
-		if self.var.auto_log == u'yes':
-			for logvar, info in self.experiment.var.inspect().items():
+		if self.var.auto_log == 'yes':
+			for logvar, info in list(self.experiment.var.inspect().items()):
 				self.experiment.pygaze_eyetracker.log_var(logvar,
-					info[u'value'])
+					info['value'])
 				self.clock.sleep(self.var.throttle)
 
 class qtpygaze_log(pygaze_log, qtautoplugin):

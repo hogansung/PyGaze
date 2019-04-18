@@ -221,14 +221,14 @@ class OpenGazeTracker:
 
 		# If there is no current record yet, return None.
 		self._inlock.acquire()
-		if 'REC' not in self._incoming.keys():
+		if 'REC' not in list(self._incoming.keys()):
 			x = None
 			y = None
-		elif 'NO_ID' not in self._incoming['REC'].keys():
+		elif 'NO_ID' not in list(self._incoming['REC'].keys()):
 			x = None
 			y = None
-		elif ('BPOGX' not in self._incoming['REC']['NO_ID'].keys()) or \
-			('BPOGY' not in self._incoming['REC']['NO_ID'].keys()):
+		elif ('BPOGX' not in list(self._incoming['REC']['NO_ID'].keys())) or \
+			('BPOGY' not in list(self._incoming['REC']['NO_ID'].keys())):
 			x = None
 			y = None
 		else:
@@ -246,14 +246,14 @@ class OpenGazeTracker:
 
 		# If there is no current record yet, return None.
 		self._inlock.acquire()
-		if 'REC' not in self._incoming.keys():
+		if 'REC' not in list(self._incoming.keys()):
 			psize =  None
-		elif 'NO_ID' not in self._incoming['REC'].keys():
+		elif 'NO_ID' not in list(self._incoming['REC'].keys()):
 			psize = None
-		elif ('LPV' not in self._incoming['REC']['NO_ID'].keys()) or \
-			('LPS' not in self._incoming['REC']['NO_ID'].keys()) or \
-			('RPV' not in self._incoming['REC']['NO_ID'].keys()) or \
-			('RPS' not in self._incoming['REC']['NO_ID'].keys()):
+		elif ('LPV' not in list(self._incoming['REC']['NO_ID'].keys())) or \
+			('LPS' not in list(self._incoming['REC']['NO_ID'].keys())) or \
+			('RPV' not in list(self._incoming['REC']['NO_ID'].keys())) or \
+			('RPS' not in list(self._incoming['REC']['NO_ID'].keys())):
 			psize = None
 
 		# Compute the pupil size, and return it if there is valid data.
@@ -339,7 +339,7 @@ class OpenGazeTracker:
 		# header (this was computed in __init__).
 		line = self._n_logvars * ['']
 		# Loop through all keys in the dict.
-		for varname in sample.keys():
+		for varname in list(sample.keys()):
 			# Check if this is a logable variable.
 			if varname in self._logheader:
 				# Find the appropriate index in the line
@@ -449,20 +449,20 @@ class OpenGazeTracker:
 				# won't be accessed at the same time.
 				self._inlock.acquire()
 				# Check if this command is already in the current dict.
-				if command not in self._incoming.keys():
+				if command not in list(self._incoming.keys()):
 					self._incoming[command] = {}
 				# Some messages have no ID, for example 'REC' messages.
 				# We simply assign 'NO_ID' as the ID.
-				if 'ID' not in msgdict.keys():
+				if 'ID' not in list(msgdict.keys()):
 					msgdict['ID'] = 'NO_ID'
 				# Check if this ID is already in the current dict.
-				if msgdict['ID'] not in self._incoming[command].keys():
+				if msgdict['ID'] not in list(self._incoming[command].keys()):
 					self._incoming[command][msgdict['ID']] = {}
 				# Add receiving time stamp, and the values for each
 				# parameter to the current dict.
 				self._incoming[command][msgdict['ID']]['t'] = \
 					copy.copy(t)
-				for par, val in msgdict.items():
+				for par, val in list(msgdict.items()):
 					self._incoming[command][msgdict['ID']][par] = \
 						copy.copy(val)
 				# Log sample if command=='REC' and when the logging
@@ -540,7 +540,7 @@ class OpenGazeTracker:
 					# appear.
 					if not sent:
 						self._outlock.acquire()
-						if msg in self._outlatest.keys():
+						if msg in list(self._outlatest.keys()):
 							t = copy.copy(self._outlatest[msg])
 							sent = True
 							self._debug_print("Outqueue sent: %r" \
@@ -554,7 +554,7 @@ class OpenGazeTracker:
 					# match the sent message. Ideally, they should.)
 					else:
 						self._acklock.acquire()
-						if ID in self._acknowledgements.keys():
+						if ID in list(self._acknowledgements.keys()):
 							if self._acknowledgements[ID] >= t:
 								acknowledged = True
 								self._debug_print("Outqueue acknowledged: %r" \
@@ -1070,8 +1070,8 @@ class OpenGazeTracker:
 
 		# Clear the calibration results.
 		self._inlock.acquire()
-		if 'CAL' in self._incoming.keys():
-			if 'CALIB_RESULT' in self._incoming['CAL'].keys():
+		if 'CAL' in list(self._incoming.keys()):
+			if 'CALIB_RESULT' in list(self._incoming['CAL'].keys()):
 				self._incoming['CAL'].pop('CALIB_RESULT')
 		self._inlock.release()
 	
@@ -1097,8 +1097,8 @@ class OpenGazeTracker:
 		# Return the result.
 		points = None
 		self._inlock.acquire()
-		if 'CAL' in self._incoming.keys():
-			if 'CALIB_RESULT' in self._incoming['CAL'].keys():
+		if 'CAL' in list(self._incoming.keys()):
+			if 'CALIB_RESULT' in list(self._incoming['CAL'].keys()):
 				# Get the latest calibration results.
 				cal = copy.deepcopy(self._incoming['CAL']['CALIB_RESULT'])
 				# Compute the number of fixation points by dividing the
@@ -1107,7 +1107,7 @@ class OpenGazeTracker:
 				# the 'CALIB_RESULT' dict also has an 'ID' parameter,
 				# which we should account for by subtracting 1 from the
 				# length of the list of keys in the dict.
-				n_points = (len(cal.keys()) - 1) // len(params)
+				n_points = (len(list(cal.keys())) - 1) // len(params)
 				# Put the results in a different format.
 				points = []
 				for i in range(1, n_points+1):
@@ -1140,8 +1140,8 @@ class OpenGazeTracker:
 		t0 = None
 		while (t0 is None) and (time.time() - start < timeout):
 			self._inlock.acquire()
-			if 'ACK' in self._incoming.keys():
-				if 'CALIBRATE_START' in self._incoming['ACK'].keys():
+			if 'ACK' in list(self._incoming.keys()):
+				if 'CALIBRATE_START' in list(self._incoming['ACK'].keys()):
 					t0 = copy.copy( \
 						self._incoming['ACK']['CALIBRATE_START']['t'])
 			self._inlock.release()
@@ -1161,8 +1161,8 @@ class OpenGazeTracker:
 			# Get the latest calibration point start.
 			t1 = 0
 			self._inlock.acquire()
-			if 'CAL' in self._incoming.keys():
-				if 'CALIB_START_PT' in self._incoming['CAL'].keys():
+			if 'CAL' in list(self._incoming.keys()):
+				if 'CALIB_START_PT' in list(self._incoming['CAL'].keys()):
 					t1 = copy.copy( \
 						self._incoming['CAL']['CALIB_START_PT']['t'])
 			self._inlock.release()

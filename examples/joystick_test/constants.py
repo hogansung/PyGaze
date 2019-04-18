@@ -8,5 +8,5 @@ DISPSIZE = (1920,1080)
 RUMBLE = True
 
 # we can only use the rumble function in Windows
-if os.name != u'nt':
+if os.name != 'nt':
 	RUMBLE = False

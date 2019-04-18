@@ -19,6 +19,6 @@
 #	You should have received a copy of the GNU General Public License
 #	along with this program.  If not, see <http://www.gnu.org/licenses/>
 
-from plugins.aoi import AOI
-from plugins.frl import FRL
-from plugins.gazecursor import GazeCursor as Cursor
+from .plugins.aoi import AOI
+from .plugins.frl import FRL
+from .plugins.gazecursor import GazeCursor as Cursor

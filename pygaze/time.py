@@ -36,14 +36,14 @@ class Time(BaseTime):
 		TODO: docstring.
 		"""
 
-		if disptype == u'pygame':
+		if disptype == 'pygame':
 			from pygaze._time.pygametime import PyGameTime as Time
-		elif disptype == u'psychopy':
+		elif disptype == 'psychopy':
 			from pygaze._time.psychopytime import PsychoPyTime as Time
-		elif disptype == u'opensesame':
+		elif disptype == 'opensesame':
 			from pygaze._time.ostime import OSTime as Time
 		else:
-			raise Exception(u'Unexpected disptype : %s' % disptype)
+			raise Exception('Unexpected disptype : %s' % disptype)
 		self.__class__ = Time
 		self.__class__.__init__(self, **args)
 		copy_docstr(BaseTime, Time)

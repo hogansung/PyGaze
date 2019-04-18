@@ -25,7 +25,7 @@ class pygaze_start_recording(item):
 	
 	"""Plug-in runtime definition."""
 
-	description = u'Puts the eye tracker into recording mode'
+	description = 'Puts the eye tracker into recording mode'
 
 	def reset(self):
 
@@ -34,7 +34,7 @@ class pygaze_start_recording(item):
 			Resets plug-in settings.
 		"""
 
-		self.var.status_msg = u'start_trial'
+		self.var.status_msg = 'start_trial'
 	
 	def run(self):
 

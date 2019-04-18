@@ -33,10 +33,10 @@ class Joystick(BaseJoystick):
 
 		# see BaseJoystick
 
-		if disptype in (u'pygame', u'psychopy'):
+		if disptype in ('pygame', 'psychopy'):
 			from pygaze._joystick.pygamejoystick import PyGameJoystick
 			self.__class__ = PyGameJoystick
 		else:
-			raise Exception(u'Unexpected disptype : %s' % disptype)
+			raise Exception('Unexpected disptype : %s' % disptype)
 		self.__class__.__init__(self, **args)
 		copy_docstr(BaseJoystick, Joystick)

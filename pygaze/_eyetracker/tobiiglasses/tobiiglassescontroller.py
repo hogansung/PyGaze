@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>
 
-import urllib2
+import urllib.request, urllib.error, urllib.parse
 import json
 import time
 import datetime
@@ -175,10 +175,10 @@ class TobiiGlassesController():
 	def __post_request__(self, api_action, data=None):
 
 		url = self.base_url + api_action
-		req = urllib2.Request(url)
+		req = urllib.request.Request(url)
 		req.add_header('Content-Type', 'application/json')
 		data = json.dumps(data)
-		response = urllib2.urlopen(req, data)
+		response = urllib.request.urlopen(req, data)
 		data = response.read()
 		json_data = json.loads(data)
 		return json_data
@@ -186,7 +186,7 @@ class TobiiGlassesController():
 	def __get_request__(self, api_action):
 
 		url = self.base_url + api_action
-		res = urllib2.urlopen(url)
+		res = urllib.request.urlopen(url)
 		data = json.load(res)
 		return data
 
@@ -272,9 +272,9 @@ class TobiiGlassesController():
 		url = self.base_url + api_action
 		running = True
 		while running:
-			req = urllib2.Request(url)
+			req = urllib.request.Request(url)
 			req.add_header('Content-Type', 'application/json')
-			response = urllib2.urlopen(req, None)
+			response = urllib.request.urlopen(req, None)
 			data = response.read()
 			json_data = json.loads(data)
 			if json_data[key] in values:

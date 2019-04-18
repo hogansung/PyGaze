@@ -33,14 +33,14 @@ class Display(BaseDisplay):
 
 		# see BaseDisplay
 
-		if disptype == u'pygame':
+		if disptype == 'pygame':
 			from pygaze._display.pygamedisplay import PyGameDisplay as Display
-		elif disptype == u'psychopy':
+		elif disptype == 'psychopy':
 			from pygaze._display.psychopydisplay import PsychoPyDisplay  as Display
-		elif disptype == u'opensesame':
+		elif disptype == 'opensesame':
 			from pygaze._display.osdisplay import OSDisplay as Display
 		else:
-			raise Exception(u'Unexpected disptype : %s' % disptype)
+			raise Exception('Unexpected disptype : %s' % disptype)
 		self.__class__ = Display
 		self.__class__.__init__(self, **args)
 		copy_docstr(BaseDisplay, Display)

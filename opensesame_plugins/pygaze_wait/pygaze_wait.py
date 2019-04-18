@@ -26,7 +26,7 @@ class pygaze_wait(item):
 	
 	"""Plug-in runtime definition."""
 
-	description = u'Waits for an eye-tracker event'
+	description = 'Waits for an eye-tracker event'
 
 	def reset(self):
 
@@ -35,33 +35,33 @@ class pygaze_wait(item):
 			Resets plug-in settings.
 		"""
 		
-		self.var.event = u'Saccade start'
+		self.var.event = 'Saccade start'
 
 	def prepare(self):
 
 		"""The preparation phase of the plug-in goes here."""
 
 		item.prepare(self)
-		if self.var.event == u'Saccade start':
+		if self.var.event == 'Saccade start':
 			self.wait_func = self.experiment.pygaze_eyetracker. \
 				wait_for_saccade_start
-		elif self.var.event == u'Saccade end':
+		elif self.var.event == 'Saccade end':
 			self.wait_func = self.experiment.pygaze_eyetracker. \
 				wait_for_saccade_end
-		elif self.var.event == u'Fixation start':
+		elif self.var.event == 'Fixation start':
 			self.wait_func = self.experiment.pygaze_eyetracker. \
 				wait_for_fixation_start
-		elif self.var.event == u'Fixation end':
+		elif self.var.event == 'Fixation end':
 			self.wait_func = self.experiment.pygaze_eyetracker. \
 				wait_for_fixation_end
-		elif self.var.event == u'Blink start':
+		elif self.var.event == 'Blink start':
 			self.wait_func = self.experiment.pygaze_eyetracker. \
 				wait_for_blink_start
-		elif self.var.event == u'Blink end':
+		elif self.var.event == 'Blink end':
 			self.wait_func = self.experiment.pygaze_eyetracker. \
 				wait_for_blink_start
 		else:
-			raise osexception(u'Unknown event: %s' % self.var.event)
+			raise osexception('Unknown event: %s' % self.var.event)
 		
 	def run(self):
 

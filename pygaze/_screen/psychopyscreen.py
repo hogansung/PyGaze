@@ -56,7 +56,7 @@ except:
 	except:
 		pilimp = False
 		warnings.warn( \
-			u"PIL's Image class could not be loaded; image scaling with PsychoPy disptype is now impossible!")
+			"PIL's Image class could not be loaded; image scaling with PsychoPy disptype is now impossible!")
 
 
 class PsychoPyScreen(BaseScreen):

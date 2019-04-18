@@ -39,7 +39,7 @@ except:
 import copy
 import math
 
-from iViewXAPI import  *
+from .iViewXAPI import  *
 
 
 # function for identyfing errors
@@ -95,7 +95,7 @@ def errorstring(returncode):
 		'unknown': "unknown error with decimal code %d; please refer to the iViewX SDK Manual" % returncode
 		}
 
-	if returncode in codes.keys():
+	if returncode in list(codes.keys()):
 		return codes[returncode]
 	else:
 		return codes['unknown']
@@ -351,7 +351,7 @@ class SMItracker(BaseEyeTracker):
 					self.accuracy = ((accuracyData.deviationLX,accuracyData.deviationLY), (accuracyData.deviationLX,accuracyData.deviationLY)) # dsttresh = (left tuple, right tuple); tuple = (horizontal deviation, vertical deviation) in degrees of visual angle
 				else:
 					err = errorstring(res)
-					print("WARNING libsmi.SMItracker.calibrate: failed to obtain accuracy data; %s" % err)
+					print(("WARNING libsmi.SMItracker.calibrate: failed to obtain accuracy data; %s" % err))
 					self.accuracy = ((2,2),(2,2))
 					print("libsmi.SMItracker.calibrate: As an estimate, the intersample distance threshhold was set to it's default value of 2 degrees")
 				# get distance from screen to eyes (information from tracker)
@@ -364,7 +364,7 @@ class SMItracker(BaseEyeTracker):
 					screendist = sampleData.leftEye.eyePositionZ / 10.0 # eyePositionZ is in mm; screendist is in cm
 				else:
 					err = errorstring(res)
-					print("WARNING libsmi.SMItracker.calibrate: failed to obtain screen distance; %s" % err)
+					print(("WARNING libsmi.SMItracker.calibrate: failed to obtain screen distance; %s" % err))
 					screendist = settings.SCREENDIST
 					print("libsmi.SMItracker.calibrate: As an estimate, the screendistance was set to it's default value of 57 cm")
 				# calculate thresholds based on tracker settings
@@ -389,12 +389,12 @@ class SMItracker(BaseEyeTracker):
 
 			# validation error
 			else:
-				print("WARNING libsmi.SMItracker.calibrate: validation was unsuccesful %s" % verr)
+				print(("WARNING libsmi.SMItracker.calibrate: validation was unsuccesful %s" % verr))
 				return False
 
 		# calibration error
 		else:
-			print("WARNING libsmi.SMItracker.calibrate: calibration was unsuccesful; %s" % cerr)
+			print(("WARNING libsmi.SMItracker.calibrate: calibration was unsuccesful; %s" % cerr))
 			return False
 
 
@@ -571,7 +571,7 @@ class SMItracker(BaseEyeTracker):
 		res = iViewXAPI.iV_Log(c_char_p(msg))
 		if res != 1:
 			err = errorstring(res)
-			print("WARNING libsmi.SMItracker.log: failed to log message '%s'; %s" % (msg,err))
+			print(("WARNING libsmi.SMItracker.log: failed to log message '%s'; %s" % (msg,err)))
 
 	def log_var(self, var, val):
 
@@ -591,7 +591,7 @@ class SMItracker(BaseEyeTracker):
 		res = iViewXAPI.iV_Log(c_char_p(msg))
 		if res != 1:
 			err = errorstring(res)
-			print("WARNING libsmi.SMItracker.log_var: failed to log variable '%s' with value '%s'; %s" % (var,val,err))
+			print(("WARNING libsmi.SMItracker.log_var: failed to log variable '%s' with value '%s'; %s" % (var,val,err)))
 
 	def prepare_backdrop(self):
 
@@ -642,7 +642,7 @@ class SMItracker(BaseEyeTracker):
 		else:
 			# print warning to interpreter
 			err = errorstring(res)
-			print("WARNING libsmi.SMItracker.pupil_size: failed to obtain sample; %s" % err)
+			print(("WARNING libsmi.SMItracker.pupil_size: failed to obtain sample; %s" % err))
 
 			return -1
 
@@ -672,7 +672,7 @@ class SMItracker(BaseEyeTracker):
 			return self.prevsample
 		else:
 			err = errorstring(res)
-			print("WARNING libsmi.SMItracker.sample: failed to obtain sample; %s" % err)
+			print(("WARNING libsmi.SMItracker.sample: failed to obtain sample; %s" % err))
 			return (-1,-1)
 
 
@@ -695,7 +695,7 @@ class SMItracker(BaseEyeTracker):
 	def send_message(self, msg):
 		# Use to send event marker strings to the iViewX recording.
 		iViewXAPI.iV_SendImageMessage(c_char_p(msg))
-		print("message: ", msg)
+		print(("message: ", msg))
 
 	def set_backdrop(self):
 

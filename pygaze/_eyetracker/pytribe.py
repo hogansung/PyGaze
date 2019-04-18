@@ -37,8 +37,8 @@ class EyeTribe:
 		"""
 		
 		# initialize data collectors
-		self._logfile = codecs.open('%s.tsv' % (logfilename), 'w', u'utf-8')
-		self._separator = u'\t'
+		self._logfile = codecs.open('%s.tsv' % (logfilename), 'w', 'utf-8')
+		self._separator = '\t'
 		self._log_header()
 		self._queue = Queue()
 
@@ -131,9 +131,9 @@ class EyeTribe:
 		else:
 			t = ''
 		# assemble line
-		line = self._separator.join(map(str,[u'MSG', ts, t, safe_decode(message)]))
+		line = self._separator.join(map(str,['MSG', ts, t, safe_decode(message)]))
 		# write message
-		self._logfile.write(line + u'\n') # to internal buffer
+		self._logfile.write(line + '\n') # to internal buffer
 
 	def sample(self):
 
@@ -400,7 +400,7 @@ class ParallelEyeTribe:
 		self.eyetribe_process = Process(target=_run_eyetribe_process, \
 			args=[logfilename, host, port, self._connection_alive, \
 			self._command_queue])
-		self.eyetribe_process.name = u'pygaze_eyetribe'
+		self.eyetribe_process.name = 'pygaze_eyetribe'
 		self.eyetribe_process.daemon = True
 		self.eyetribe_process.start()
 
@@ -892,13 +892,13 @@ class connection:
 
 				# Store the parsed response in the _responses dict.
 				if resp != None:
-					if 'category' in resp.keys():
+					if 'category' in list(resp.keys()):
 						self._request_lock.acquire()
 						if resp['category'] == 'heartbeat':
 							self._responses[resp['category']] = \
 								copy.deepcopy(resp)
 						elif resp['category'] == 'calibration':
-							if 'request' in resp.keys():
+							if 'request' in list(resp.keys()):
 								# Special category: if the
 								# request was 'pointend', the
 								# 'calibresult' can be returned.
@@ -908,22 +908,22 @@ class connection:
 								self._responses[resp['category']][resp['request']] = \
 									copy.deepcopy(resp)
 								if resp['request'] == 'pointend' and \
-									'values' in resp.keys() and \
-									'calibresult' in resp['values'].keys():
+									'values' in list(resp.keys()) and \
+									'calibresult' in list(resp['values'].keys()):
 									self._responses['tracker']['get']['calibresult'] = \
 										copy.deepcopy(resp)
 							else:
-								print("Could not store response: '%s'" % (resp))
+								print(("Could not store response: '%s'" % (resp)))
 						elif resp['category'] == 'tracker':
-							if ('request' in resp.keys()) and ('values' in resp.keys()):
-								for k in resp['values'].keys():
+							if ('request' in list(resp.keys())) and ('values' in list(resp.keys())):
+								for k in list(resp['values'].keys()):
 									self._responses[resp['category']][resp['request']][k] = \
 										copy.deepcopy(resp)
 							else:
-								print("Could not store response: '%s'" % (resp))
+								print(("Could not store response: '%s'" % (resp)))
 						self._request_lock.release()
 					else:
-						print("Could not store response: '%s'" % (resp))
+						print(("Could not store response: '%s'" % (resp)))
 
 
 class tracker:
@@ -1614,7 +1614,7 @@ class calibration:
 			raise Exception("Error in calibration.pointend: %s (code %d)" % (response['values']['statusmessage'],response['statuscode']))
 
 		# return True if this was not the final calibration point
-		if ('values' not in response.keys()) or ('calibresult' not in response['values'].keys()):
+		if ('values' not in list(response.keys())) or ('calibresult' not in list(response['values'].keys())):
 			return True
 
 		# if this was the final calibration point, return the results

@@ -50,7 +50,7 @@ import signal
 import sys
 
 
-import urllib2
+import urllib.request, urllib.error, urllib.parse
 import json
 import time
 import threading
@@ -65,7 +65,7 @@ warnings.filterwarnings("ignore", category=numpy.VisibleDeprecationWarning)
 # # # # #
 # TobiiGlassesController
 
-from tobiiglasses.tobiiglassescontroller import TobiiGlassesController
+from .tobiiglasses.tobiiglassescontroller import TobiiGlassesController
 
 
 

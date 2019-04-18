@@ -56,14 +56,14 @@ class Screen(BaseScreen):
 				   (default=None)
 		"""
 
-		if disptype == u'pygame':
+		if disptype == 'pygame':
 			from pygaze._screen.pygamescreen import PyGameScreen as Screen
-		elif disptype == u'psychopy':
+		elif disptype == 'psychopy':
 			from pygaze._screen.psychopyscreen import PsychoPyScreen as Screen
-		elif disptype == u'opensesame':
+		elif disptype == 'opensesame':
 			from pygaze._screen.osscreen import OSScreen as Screen
 		else:
-			raise Exception(u'Unexpected disptype : %s' % disptype)
+			raise Exception('Unexpected disptype : %s' % disptype)
 		self.__class__ = Screen
 		self.__class__.__init__(self, **args)
 		copy_docstr(BaseScreen, Screen)

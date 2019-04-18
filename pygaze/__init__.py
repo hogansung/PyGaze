@@ -25,30 +25,30 @@ from distutils.version import StrictVersion
 import sys
 import os
 
-__version__ = version = u'0.6.0a24'
+__version__ = version = '0.6.0a24'
 strict_version = StrictVersion(__version__)
 # The version without the prerelease (if any): e.g. 3.0.0
-main_version = u'.'.join([str(i) for i in strict_version.version])
+main_version = '.'.join([str(i) for i in strict_version.version])
 # The version following the debian convention: e.g. 3.0.0~a1
 if strict_version.prerelease is None:
 	deb_version = main_version
 else:
-	deb_version = main_version + u'~%s%d' % strict_version.prerelease
+	deb_version = main_version + '~%s%d' % strict_version.prerelease
 
 # directory stuff
 DIR = safe_decode(os.path.dirname(__file__), enc=sys.getfilesystemencoding())
-if os.path.exists(u'resources'):
-	RESDIR = u'resources'
-elif os.path.exists(os.path.join(DIR, u'resources')):
-	RESDIR = os.path.join(DIR, u'resources')
-elif os.path.exists(u'/usr/share/pygaze/resources'):
-	RESDIR = u'/usr/share/pygaze/resources'
+if os.path.exists('resources'):
+	RESDIR = 'resources'
+elif os.path.exists(os.path.join(DIR, 'resources')):
+	RESDIR = os.path.join(DIR, 'resources')
+elif os.path.exists('/usr/share/pygaze/resources'):
+	RESDIR = '/usr/share/pygaze/resources'
 elif py3:
 	RESDIR = os.getcwd()
 else:
-	RESDIR = os.getcwdu()
-FONTDIR = os.path.join(RESDIR, u'fonts')
-SOUNDDIR = os.path.join(RESDIR, u'sounds')
+	RESDIR = os.getcwd()
+FONTDIR = os.path.join(RESDIR, 'fonts')
+SOUNDDIR = os.path.join(RESDIR, 'sounds')
 
 # fontfiles
 FONTFILES = []

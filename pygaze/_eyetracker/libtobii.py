@@ -416,8 +416,8 @@ class TobiiProTracker(BaseEyeTracker):
 
                 calibration.leave_calibration_mode()
 
-                print("Compute and apply returned {0} and collected at {1} points.".
-                      format(calibration_result.status, len(calibration_result.calibration_points)))
+                print(("Compute and apply returned {0} and collected at {1} points.".
+                      format(calibration_result.status, len(calibration_result.calibration_points))))
 
                 if calibration_result.status != tr.CALIBRATION_STATUS_SUCCESS:
                     self.stop_recording()

@@ -44,7 +44,7 @@ import math
 import random
 
 # external imports
-from pytribe import EyeTribe
+from .pytribe import EyeTribe
 
 
 def deg2pix(cmdist, angle, pixpercm):

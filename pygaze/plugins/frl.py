@@ -88,7 +88,7 @@ class FRL:
 		elif pos == 'topleft':
 			self.frlcor = (self.frlxdis, self.frlydis)
 		else:
-			print("WARNING! plugins.frl.__init__: FRL position argument '%s' not recognized; FRL position set to 'centre'." % pos)
+			print(("WARNING! plugins.frl.__init__: FRL position argument '%s' not recognized; FRL position set to 'centre'." % pos))
 			self.frlcor = (0, 0)
 
 		if disptype in ['pygame','psychopy']:

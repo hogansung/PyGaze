@@ -421,7 +421,7 @@ class PyGameScreen(BaseScreen):
 		
 		fontname = os.path.join(pygaze.FONTDIR, font) + '.ttf'
 		if not os.path.isfile(fontname):
-			print("WARNING: screen.Screen: could not find font '%s'; using default instead" % fontname)
+			print(("WARNING: screen.Screen: could not find font '%s'; using default instead" % fontname))
 			font = pygame.font.get_default_font()
 		if os.path.isfile(fontname):			
 			font = pygame.font.Font(fontname, fontsize)
@@ -467,7 +467,7 @@ class PyGameScreen(BaseScreen):
 			pos = (self.dispsize[0]/2, self.dispsize[1]/2)
 		
 		# check if image is a path name
-		if type(image) in [str, unicode]:
+		if type(image) in [str, str]:
 			# check if the image file exists
 			if os.path.isfile(image):
 				# load image from file

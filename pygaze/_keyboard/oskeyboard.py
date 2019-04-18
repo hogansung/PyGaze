@@ -66,15 +66,15 @@ class OSKeyboard(BaseKeyboard):
 
 		self.keyboard.timeout = timeout
 
-	def get_key(self, keylist=u'default', timeout=u'default', flush=False):
+	def get_key(self, keylist='default', timeout='default', flush=False):
 
 		# See _keyboard.basekeyboard.BaseKeyboard
 
 		kwdict = {}
-		if keylist != u'default':
-			kwdict[u'keylist'] = keylist
-		if timeout != u'default':
-			kwdict[u'timeout'] = timeout
+		if keylist != 'default':
+			kwdict['keylist'] = keylist
+		if timeout != 'default':
+			kwdict['timeout'] = timeout
 		# flush if necessary
 		if flush:
 			self.keyboard.flush()

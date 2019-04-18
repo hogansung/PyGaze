@@ -51,15 +51,15 @@ class EyeTracker(BaseEyeTracker):
 
 		# set trackertype to dummy in dummymode
 		if settings.DUMMYMODE:
-			trackertype = u'dummy'
+			trackertype = 'dummy'
 
 		# correct wrong input
-		if trackertype not in [u'dumbdummy', u'dummy', u'eyelink', u'smi', u'eyetribe', u'opengaze', u'tobii', u'tobii-legacy', u'tobiiglasses']:
+		if trackertype not in ['dumbdummy', 'dummy', 'eyelink', 'smi', 'eyetribe', 'opengaze', 'tobii', 'tobii-legacy', 'tobiiglasses']:
 			raise Exception( \
-				u"Error in eyetracker.EyeTracker: trackertype '%s' not recognized; it should be one of 'dumbdummy', 'dummy', 'eyelink', 'smi', 'eyetribe', 'opengaze', 'tobii', 'tobii-legacy', 'tobiiglasses'" % trackertype)
+				"Error in eyetracker.EyeTracker: trackertype '%s' not recognized; it should be one of 'dumbdummy', 'dummy', 'eyelink', 'smi', 'eyetribe', 'opengaze', 'tobii', 'tobii-legacy', 'tobiiglasses'" % trackertype)
 
 		# EyeLink
-		if trackertype == u'eyelink':
+		if trackertype == 'eyelink':
 			# import libraries
 			from pygaze._eyetracker.libeyelink import libeyelink
 			# morph class
@@ -68,7 +68,7 @@ class EyeTracker(BaseEyeTracker):
 			self.__class__.__init__(self, display, **args)
 
 		# SMI
-		elif trackertype == u'smi':
+		elif trackertype == 'smi':
 			# import libraries
 			from pygaze._eyetracker.libsmi import SMItracker
 			# morph class
@@ -77,7 +77,7 @@ class EyeTracker(BaseEyeTracker):
 			self.__class__.__init__(self, display, **args)
 
 		# Tobii Legacy
-		elif trackertype == u'tobii-legacy':
+		elif trackertype == 'tobii-legacy':
 			# import libraries
 			from pygaze._eyetracker.libtobiilegacy import TobiiTracker
 			# morph class
@@ -86,7 +86,7 @@ class EyeTracker(BaseEyeTracker):
 			self.__class__.__init__(self, display, **args)
 
 		# Tobii
-		elif trackertype == u'tobii':
+		elif trackertype == 'tobii':
 			# import libraries
 			from pygaze._eyetracker.libtobii import TobiiProTracker
 			# morph class
@@ -95,7 +95,7 @@ class EyeTracker(BaseEyeTracker):
 			self.__class__.__init__(self, display, **args)
 
 		# Tobii Pro Glasses 2
-		elif trackertype == u'tobiiglasses':
+		elif trackertype == 'tobiiglasses':
 			# import libraries
 			from pygaze._eyetracker.libtobiiglasses import TobiiGlassesTracker
 			# morph class
@@ -104,7 +104,7 @@ class EyeTracker(BaseEyeTracker):
 			self.__class__.__init__(self, display, **args)
 
 		# EyeTribe
-		elif trackertype == u'eyetribe':
+		elif trackertype == 'eyetribe':
 			# import libraries
 			from pygaze._eyetracker.libeyetribe import EyeTribeTracker
 			# morph class
@@ -113,7 +113,7 @@ class EyeTracker(BaseEyeTracker):
 			self.__class__.__init__(self, display, **args)
 
 		# OpenGaze
-		elif trackertype == u'opengaze':
+		elif trackertype == 'opengaze':
 			# import libraries
 			from pygaze._eyetracker.libopengaze import OpenGazeTracker
 			# morph class
@@ -122,7 +122,7 @@ class EyeTracker(BaseEyeTracker):
 			self.__class__.__init__(self, display, **args)
 
 		# dummy mode
-		elif trackertype == u'dummy':
+		elif trackertype == 'dummy':
 			# import libraries
 			from pygaze._eyetracker.libdummytracker import Dummy
 			# morph class
@@ -131,7 +131,7 @@ class EyeTracker(BaseEyeTracker):
 			self.__class__.__init__(self, display)
 
 		# dumb dummy mode
-		elif trackertype == u'dumbdummy':
+		elif trackertype == 'dumbdummy':
 			# import libraries
 			from pygaze._eyetracker.libdumbdummy import DumbDummy
 			# morph class
@@ -141,7 +141,7 @@ class EyeTracker(BaseEyeTracker):
 
 		else:
 			raise Exception( \
-				u"Error in eyetracker.EyeTracker.__init__: trackertype '%s' not recognized, this should not happen!" % trackertype)
+				"Error in eyetracker.EyeTracker.__init__: trackertype '%s' not recognized, this should not happen!" % trackertype)
 
 		# copy docstrings
 		copy_docstr(BaseEyeTracker, EyeTracker)

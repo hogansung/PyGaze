@@ -54,7 +54,7 @@ class OSMouse(BaseMouse):
 
 		self.experiment = settings.osexperiment
 		self.uniform_coordinates = \
-			self.experiment.var.uniform_coordinates == u'yes'
+			self.experiment.var.uniform_coordinates == 'yes'
 		self.mouse = mouse(self.experiment, buttonlist=mousebuttonlist,
 			timeout=timeout)
 
@@ -104,16 +104,16 @@ class OSMouse(BaseMouse):
 
 		return self._from_pos(self.mouse.get_pos()[0])
 
-	def get_clicked(self, mousebuttonlist=u'default', timeout=u'default'):
+	def get_clicked(self, mousebuttonlist='default', timeout='default'):
 
 		# See _mouse.basemouse.BaseMouse
 
 		# set buttonlist and timeout
 		kwdict = {}
-		if mousebuttonlist != u'default':
-			kwdict[u'buttonlist'] = mousebuttonlist
-		if timeout != u'default':
-			kwdict[u'buttonlist'] = timeout
+		if mousebuttonlist != 'default':
+			kwdict['buttonlist'] = mousebuttonlist
+		if timeout != 'default':
+			kwdict['buttonlist'] = timeout
 		button, pos, t = self.mouse.get_click(**kwdict)
 		return button, self._from_pos(pos), t
 

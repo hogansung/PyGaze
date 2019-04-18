@@ -316,7 +316,7 @@ log.write(["Sound", t1])
 kb.get_key()
 
 # loop through sound waves
-for sound in sounds.keys():
+for sound in list(sounds.keys()):
 	scr.clear()
 	scr.draw_text("You should now hear %s. Press Space to continue." % sound)
 	disp.fill(scr)
